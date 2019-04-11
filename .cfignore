@@ -1,0 +1,5 @@
+static
+static_custom
+environments.sh
+db.sqlite.db
+.venv
