@@ -1,0 +1,9 @@
+---
+applications:
+- name: kudo4coffee
+  memory: 64M
+  instances: 1
+  env:
+    HAID: 
+    API_ENDPOINT: 
+    BEARER_TOKEN: 

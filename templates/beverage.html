@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="row row-content">
+      <div class="col-sm-4 col-md-4">
+          <h3>Bosch BIC Challenge</h3>
+          <p>Was müsst ihr tun? Fertig!</p>
+          {% if form %}
+          {% crispy form %}
+          {% endif %}
+      </div>
+    </div>
+</div>
+{% endblock %}
