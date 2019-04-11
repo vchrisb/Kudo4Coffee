@@ -74,3 +74,4 @@ static_content/
 
 manifest.yml
 .venv/
+db.sqlite3
