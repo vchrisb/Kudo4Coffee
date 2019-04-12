@@ -1,5 +1,7 @@
 static
 static_custom
 environments.sh
-db.sqlite.db
+db.sqlite3
 .venv
+.vscode
+scripts
