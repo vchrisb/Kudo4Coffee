@@ -2,8 +2,12 @@
 applications:
 - name: kudo4coffee
   memory: 64M
-  instances: 1
+  stack: cflinuxfs3
+  instances: 2
+  services:
+  - postgres_kudo4coffee
   env:
+    DEBUG: False
     HAID: 
     API_ENDPOINT: 
     BEARER_TOKEN: 

@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import dj_database_url
+from distutils.util import strtobool
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,7 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'sv(ho1os(*z4^%plrq21@b7x034waz4cms9fwzj0@n3a^$c@&1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if "DEBUG" in os.environ:
+    DEBUG = strtobool(os.environ['DEBUG'])
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -128,3 +132,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_FAIL_SILENTLY = not DEBUG
