@@ -6,8 +6,18 @@
     <div class="row row-content">
       <div class="col-sm-4 col-md-4">
           <h3>Bosch BIC Challenge</h3>
-          <p>Was müsst ihr tun? Fertig!</p>
+          {% if alert %}
+          <div class="alert alert-danger" role="alert">
+            <strong>Oh snap!</strong> {{ alert }}
+          </div>
+          {% endif %}
+          {% if success %}
+          <div class="alert alert-success" role="alert">
+            <strong>Well done!</strong> {{ success }}
+          </div>
+          {% endif %}
           {% if form %}
+          <p>Was müsst ihr tun? Fertig!</p>
           {% crispy form %}
           {% endif %}
       </div>

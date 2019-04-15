@@ -1,8 +1,8 @@
 # Create your views here.
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
 from django.conf import settings
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 from .forms import BeverageForm
@@ -11,6 +11,7 @@ from .models import BeverageHistory, Beverage
 import requests, json
 import os
 # Create your views here.
+@login_required
 def beverage(request):
 
     if request.method == 'POST':
@@ -18,15 +19,21 @@ def beverage(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.created_by = request.user
-            do_api_call(instance.beverage.key, instance.bean_amount, 60)
-            instance.save()
-            return HttpResponseRedirect(reverse('beverage'))
+            if do_api_call(instance.beverage.key, instance.bean_amount, 60):
+                instance.save()
+                context = {
+                    "success": "Your beverage is pouring!",
+                }
+            else:
+                context = {
+                    "alert": "This is unpleasent. Unable to unable to fulfill your requested beverage!",
+                }
+            return render(request, "beverage.html", context)
     else:
         form = BeverageForm()
-
-    context = {
-        "form": form,
-    }
+        context = {
+            "form": form,
+        }
     return render(request, "beverage.html", context)
 
 
@@ -72,6 +79,6 @@ def do_api_call(beverage, beanamount, fillquantity ):
       print(json.dumps(data, indent=4, sort_keys=True))
       print("Return message:")
       print(json.dumps(r.json(), indent=4, sort_keys=True))
-      return True
-    else:
       return False
+    else:
+      return True
