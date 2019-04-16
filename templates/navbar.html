@@ -17,7 +17,7 @@
               </a>
               <div class="dropdown-menu text-right" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="{% url 'beverage' %}">Order Beverage</a>
-                  <a class="dropdown-item" href="#">Order History</a>
+                  <a class="dropdown-item" href="{% url 'beverage_history' %}">Order History</a>
               </div>
             </li>
             <li class="nav-item dropdown">
@@ -33,6 +33,9 @@
             <li class="nav-item ">
               <a class="nav-link" href="{% url 'login' %}">Sign In</a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+              </li>
           {% endif %}
         </ul>
   </div>

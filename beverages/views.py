@@ -38,6 +38,14 @@ def beverage(request):
     return render(request, "beverage.html", context)
 
 
+@login_required
+def beverage_history(request):
+    orders = list(BeverageHistory.objects.filter(created_by=request.user))
+    context = {
+        "orders": orders,
+    }
+    return render(request, "beverage_history.html", context)
+
 def do_api_call(beverage, beanamount, fillquantity ):
 
     haID = os.environ['HAID']
