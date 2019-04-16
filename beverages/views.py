@@ -10,6 +10,7 @@ from .models import BeverageHistory, Beverage
 
 import requests, json
 import os
+
 # Create your views here.
 @login_required
 def beverage(request):
@@ -26,7 +27,7 @@ def beverage(request):
                 }
             else:
                 context = {
-                    "alert": "This is unpleasent. Unable to unable to fulfill your requested beverage!",
+                    "alert": "This is unpleasant. Unable to fulfill your requested beverage!",
                 }
             return render(request, "beverage.html", context)
     else:

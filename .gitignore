@@ -70,8 +70,6 @@ envionments.sh
 static/
 media/
 
-static_content/
-
 manifest.yml
 .venv/
 .vscode/
